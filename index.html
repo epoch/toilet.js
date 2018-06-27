@@ -16,9 +16,39 @@
     <div class="bridge-wrapper">
       <div class="bridge"></div>
     </div>
-    <div class="bowl"></div>
+    <div class="bowl">
+      <div class="bowl-inner-rim">
+        <svg width="100%" height="280px" viewBox="0 0 100 100" >
+          <linearGradient id="water-texture" spreadMethod="repeat">
+            <stop offset="0%" stop-color="lightblue" />
+            <stop offset="50%" stop-color="skyblue" />
+            <stop offset="100%" stop-color="lightblue" />
+          </linearGradient>
+          <linearGradient id="pee-texture">
+              <stop offset="0%" stop-color="orchid" />
+              <stop offset="50%" stop-color="plum" />
+              <stop offset="100%" stop-color="plum" />
+            </linearGradient>
+          <filter id="inset-shadow">
+            <feComposite operator="out" in2="SourceGraphic"/>
+            <feComposite operator="atop" in2="SourceGraphic"/>
+          </filter>
+          <filter id="urine-blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6">
+          </filter>
+          <filter id="shadow-blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3">
+          </filter>
+          <filter id="stream-blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2">
+          </filter>          
+          <rect class="shadow" x="36" y="35" width="28" height="30" rx="12" ry="12"></rect>
+          <ellipse class="urine" cx="50" cy="50" rx="9" ry="10" />
+          <ellipse class="water" cx="50" cy="50" rx="30" ry="31" />
+        </svg>
+      </div>
+    </div>
   </main>
-
 
   <script src="app.js"></script>
 </body>

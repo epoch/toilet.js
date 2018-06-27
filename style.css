@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  padding: 1em;
+  padding: 1em 2em;
   background-color: gray;
   background-image: url('tile.jpg');
 }
@@ -20,11 +20,11 @@ body {
 
 .tank {
   width: 340px;
-  height: 200px;
+  height: 150px;
   background-color: white;
   border-radius: 30px;
   position: relative;
-  box-shadow: 0 0 1em #B3B6B7;
+  box-shadow: 0 0 1em #B3B6B7, inset 0 0 20px #ccc;
 }
 
 .bridge-wrapper {
@@ -40,35 +40,36 @@ body {
 }
 
 .bowl {
-  background-color: mintcream;
-  border: 60px solid white;
-  height: 340px;
+  background-color: white;
+  height: 370px;
   width: 340px;
-  border-radius: 20% 20% 40% 40%;
-  box-shadow: inset 0 0 20px #e3e3e3,
-              0 0 1em #B3B6B7;
-  cursor: pointer;
-  transition: box-shadow .4s, background-color 2s;
+  padding-top: 40px;
+  border-radius: 15% 15% 40% 40%;
+  box-shadow: 0 0 1em #B3B6B7;
+  transition: box-shadow .5s, background-color 2s;
 }
 
 .bowl:hover {
-  box-shadow: inset 0 0 40px #ccc;
+  box-shadow: 0 0 1em #B3B6B7, inset 0 0 30px #ccc;
 }
 
-.poop {
-  background-color: darkolivegreen;
-}
 
-.pee {
-  background-color: goldenrod;
+.bowl-inner-rim {
+  background: rgb(216,221,223);
+  background: radial-gradient(circle, rgba(216,221,223,1) 0%, rgba(245,245,245,1) 65%, rgba(255,255,255,1) 100%);margin: 0 auto;
+  width: 70%;
+  height: 280px;
+  border-radius: 35%;
+  box-shadow: inset 0 0 20px #e3e3e3,
+              0 0 1em #B3B6B7;
 }
 
 .flush {
   background-color: #F0F3F4;
   border-radius: 5px;
   box-shadow: 0px 4px 0px #979A9A;
-  height: 60px;
-  width: 160px;
+  height: 50px;
+  width: 150px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -80,4 +81,94 @@ body {
 .flush:active {
   box-shadow: 0 2px 0 #7B7D7D;
   top: 51%;   
+}
+
+svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.water {
+  cursor: pointer;
+  fill: url(#water-texture);
+  fill-opacity: 0.4;
+  transition: all 6s ease-out;
+  transform-origin: center;
+}
+
+.urine {
+  fill: url(#pee-texture);
+  transition: all 5s;
+  filter: url(#urine-blur);
+  fill-opacity: 0;
+  transform-origin: center;
+}
+
+.flushing {
+  animation: wobble 8s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+             flushing 8s cubic-bezier(.34,-0.43,0,1.14);
+}
+
+.stream {
+  fill: lightblue;
+  fill-opacity: 0.4;
+  filter: url(#stream-blur);
+}
+
+.water.pee {
+  transform: scale(1.1);
+  fill-opacity: 0.5
+}
+.urine.pee {
+  transform: scale(1.7);
+  fill-opacity: 1;
+}
+
+.shadow {
+  fill: #373f4b;
+  filter: url(#shadow-blur);
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+    fill-opacity: 0.4;
+  }
+  28%{
+    fill-opacity: 0.5;
+  }
+  65%{
+    fill-opacity: 0.65;    
+  }
+  90%{
+    fill-opacity: 0.47;
+  }
+  100% {
+    transform: rotate(2620deg);
+    fill-opacity: 0.4;
+  }
+}
+
+@keyframes flushing {
+  0% {
+    rx: 30;
+    ry: 32;
+  }
+  29% { 
+    rx: 24;
+    ry: 25;
+  }
+  62% { 
+    rx: 35;
+    ry: 36;
+  }
+  80%{
+    rx: 31;
+    ry: 33;
+  }
+  100% {
+    rx: 30;
+    ry: 32;
+  }
 }

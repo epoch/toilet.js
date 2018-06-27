@@ -1,32 +1,32 @@
-var bowl = document.querySelector('.bowl');
+var water = document.querySelector('.water');
+var urine = document.querySelector('.urine');
 var flushBtn = document.querySelector('.flush');
-var alreadyBeen = false;
+var isFlushing = false;
+var flushingAudio = new Audio('flushing.mp3')
 
-function handleBowlClick(event){
-  if (!alreadyBeen){
-    if (event.metaKey == true) {
-      pee();
-      alreadyBeen = true;
-    } else {
-      poop();
-      alreadyBeen = true;
-    }
+function pee() {
+  water.classList.add('pee');
+  urine.classList.add('pee');
+  if (isFlushing) {
+    setTimeout(() => {
+      water.classList.remove('pee');
+      urine.classList.remove('pee');
+    }, 1500)
   }
 }
 
-function poop() {
-  bowl.classList.add('poop');
-}
-
-function pee() {
-  bowl.classList.add('pee');
-}
-
 function flush() {
-  bowl.classList.remove('poop');
-  bowl.classList.remove('pee');
-  alreadyBeen = false;
+  isFlushing = true;
+  setTimeout(() => flushingAudio.play(), 300);
+  water.classList.add('flushing');
+  water.classList.remove('pee');
+  urine.classList.remove('pee');
 }
 
-bowl.addEventListener('click', handleBowlClick);
+water.addEventListener('click', pee);
+water.addEventListener('animationend', () => {
+  water.classList.remove('flushing');
+  isFlushing = false;
+})
+
 flushBtn.addEventListener('click', flush);
